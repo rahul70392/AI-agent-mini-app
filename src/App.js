@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import {v4 as uuidv4} from 'uuid';
 
 function App() {
   const [userMessage, setUserMessage] = useState('');
@@ -26,12 +27,13 @@ function App() {
     try {
       const payload = {
         user_id: userId || 'anonymous',
+        sessionId: uuidv4(),
         message: userMessage,
       };
 
       const response = await axios.post(process.env.REACT_APP_N8N_WEBHOOK_URL, payload);
-
-      setResponseMessage(response.data.reply || 'No response from AI agent');
+      console.log("respo---------------->", response);
+      setResponseMessage(response.data.output || 'No response from AI agent');
       setUserMessage('');
     } catch (error) {
       console.error('Error communicating with webhook:', error);
