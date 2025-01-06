@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import {v4 as uuidv4} from 'uuid';
+import { v4 as uuidv4 } from 'uuid';
 
 function App() {
   const [userMessage, setUserMessage] = useState('');
   const [responseMessage, setResponseMessage] = useState('');
   const [userId, setUserId] = useState(null);
+  const [responseLoading, setResponseLoading] = useState(false);
 
   useEffect(() => {
     // Initialize Telegram Web App
@@ -25,6 +26,7 @@ function App() {
     }
 
     try {
+      setResponseLoading(true);
       const payload = {
         user_id: userId || 'anonymous',
         sessionId: uuidv4(),
@@ -38,53 +40,58 @@ function App() {
     } catch (error) {
       console.error('Error communicating with webhook:', error);
       setResponseMessage('Error contacting AI Agent. Please try again.');
+    } finally {
+      setResponseLoading(false);
     }
   };
 
   return (
-    <div style={styles.container}>
-      <h1>StrikeBit AI Agent</h1>
+    <div
+      className='container'
+    >
+      <img
+        src='/strikebit.png'
+        alt=''
+      />
+      <h1
+        className='textSize'
+      >
+        STRIKEBIT
+        <br />
+        <span
+          className='textBlue'
+        >
+          AI AGENT
+        </span>
+      </h1>
       <input
-        style={styles.input}
+        className='input'
         type="text"
         placeholder="Ask me anything..."
         value={userMessage}
         onChange={(e) => setUserMessage(e.target.value)}
       />
-      <button style={styles.button} onClick={handleSendMessage}>
+      <button
+        className='button'
+        onClick={handleSendMessage}
+      >
         Send
       </button>
-      <div style={styles.response}>
-        <strong>Response:</strong> {responseMessage}
+      <div
+        className='response'
+      >
+        {
+          responseLoading ?
+            <div className='response-loader-container'>Loading <div class="loader"></div></div>
+            : responseMessage ?
+              <>
+                Response: {responseMessage}
+              </>
+              : <></>
+        }
       </div>
     </div>
   );
 }
-
-const styles = {
-  container: {
-    fontFamily: 'Arial, sans-serif',
-    textAlign: 'center',
-    padding: '20px',
-  },
-  input: {
-    padding: '10px',
-    margin: '10px 0',
-    width: '80%',
-    maxWidth: '400px',
-  },
-  button: {
-    padding: '10px 20px',
-    backgroundColor: '#4CAF50',
-    color: 'white',
-    border: 'none',
-    cursor: 'pointer',
-  },
-  response: {
-    marginTop: '20px',
-    fontSize: '14px',
-    color: '#333',
-  },
-};
 
 export default App;

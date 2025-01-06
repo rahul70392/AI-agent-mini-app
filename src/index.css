@@ -1,13 +1,107 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@font-face {
+  font-family: 'Blatant';
+  src: url('./assets/fonts/Blatant.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
 }
 
+body {
+  margin: 0;
+  font-family: 'Blatant', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #151519;
+}
+
+/* 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+} */
+
+/* HTML: <div class="loader"></div> */
+.loader {
+  width: 10px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  animation: l5 1s infinite linear alternate;
+}
+
+@keyframes l5 {
+  0% {
+    box-shadow: 12px 0 #fff, -12px 0 #ffffff21;
+    background: #fff
+  }
+
+  33% {
+    box-shadow: 12px 0 #fff, -12px 0 #ffffff21;
+    background: #ffffff21
+  }
+
+  66% {
+    box-shadow: 12px 0 #ffffff21, -12px 0 #fff;
+    background: #ffffff21
+  }
+
+  100% {
+    box-shadow: 12px 0 #ffffff21, -12px 0 #fff;
+    background: #fff
+  }
+}
+
+.response-loader-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 20px;
+}
+
+.input {
+  padding: 16px;
+  width: 80%;
+  max-width: 400px;
+  background-color: transparent;
+  border: 1px solid #ffffff80;
+  margin-bottom: 30px;
+  color: white;
+}
+
+.button{
+  width: 160px;
+  height: 56px;
+  cursor: pointer;
+  border: none;
+  color: white;
+  background-color: #1214FD;
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 40px;
+}
+
+.response{
+  font-size: 18px;
+  color: white;
+  font-weight: 400;
+  line-height: 24px;
+  width: 85%;
+  max-width: 400px;
+}
+
+.textBlue{
+  color: #1214FD;
+}
+
+.textSize{
+  font-size: 72px;
+  color: white;
+  line-height: 64.87px;
+  text-align: center;
 }
