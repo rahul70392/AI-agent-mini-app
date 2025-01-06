@@ -4,6 +4,9 @@
   "private": true,
   "dependencies": {
     "@testing-library/react": "^13.4.0",
+    "@ton/core": "^0.59.1",
+    "@tonconnect/sdk": "^3.0.5",
+    "@tonconnect/ui-react": "^2.0.9",
     "axios": "^1.7.9",
     "cra-template": "1.2.0",
     "react": "^18.0.0",
@@ -13,7 +16,7 @@
     "web-vitals": "^4.2.4"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "react-app-rewired start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -35,5 +38,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "buffer": "^6.0.3",
+    "react-app-rewired": "^2.2.1"
   }
 }
