@@ -1,67 +1,20 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
-import { useTonConnectUI } from '@tonconnect/ui-react';
-import { Address } from '@ton/core';
+import { Navbar } from './components/Navbar';
+import Button from '@mui/material/Button';
+import Snackbar from '@mui/material/Snackbar';
+import IconButton from '@mui/material/IconButton';
+import CloseIcon from '@mui/icons-material/Close';
+
 
 function App() {
-  const [tonConnectUI] = useTonConnectUI();
-  const [tonWalletAddress, setTonWalletAddress] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
   const [userMessage, setUserMessage] = useState('');
   const [responseMessage, setResponseMessage] = useState('');
   const [userId, setUserId] = useState(null);
   const [responseLoading, setResponseLoading] = useState(false);
-
-  const handleWalletConnection = useCallback((address) => {
-    setTonWalletAddress(address);
-    console.log("Wallet Connected Successfully!");
-    setIsLoading(false);
-  }, [])
-
-  const handleWalletDisconnection = useCallback(() => {
-    setTonWalletAddress(null);
-    console.log("Wallet Disconnected Successfully!");
-    setIsLoading(false);
-  }, []);
-
-  useEffect(() => {
-    const checkWalletConnection = async () => {
-      if (tonConnectUI.account?.address) {
-        handleWalletConnection(tonConnectUI.account?.address);
-      } else {
-        handleWalletDisconnection();
-      }
-    };
-    checkWalletConnection();
-
-    const unsubscribe = tonConnectUI.onStatusChange((wallet) => {
-      if (wallet) {
-        handleWalletConnection(wallet.account.address)
-      } else {
-        handleWalletDisconnection();
-      }
-    });
-
-    return(() => {
-      unsubscribe();
-    });
-
-  }, [tonConnectUI, handleWalletConnection, handleWalletDisconnection]);
-
-  const handleWalletAction = async () => {
-    if (tonConnectUI.connected) {
-      setIsLoading(true);
-      await tonConnectUI.disconnect();
-    } else {
-      await tonConnectUI.openModal();
-    }
-  }
-
-  const formatAddress = (address) => {
-    const tempAddress = Address.parse(address).toString();
-    return `${tempAddress.slice(0,4)}...${tempAddress.slice(-4)}`;
-  }
+  const [toast, setToast] = useState(false);
+  const [toastMessage, setToastMessage] = useState("");
 
   useEffect(() => {
     // Initialize Telegram Web App
@@ -100,31 +53,27 @@ function App() {
     }
   };
 
-  if(isLoading) return <div>Loading...</div>
+  const handleCloseToast = () => {
+    setToast(false);
+  }
 
+  const action = (
+    <>
+      <IconButton
+        size="small"
+        aria-label="close"
+        color="inherit"
+        onClick={handleCloseToast}
+      >
+        <CloseIcon fontSize="small" />
+      </IconButton>
+    </>
+  );
+  
   return (
     <div
       className='container'
     >
-      <div className='wallet-button'>
-        {
-          tonWalletAddress ?
-          <div>
-            <p>Connected: {formatAddress(tonWalletAddress)}</p>
-            <button
-              onClick={handleWalletAction}
-            >
-              Disconnect Wallet
-            </button>
-          </div>
-          : <button
-            onClick={handleWalletAction}
-            className='connect-wallet-button'
-          >
-            Connect Ton Wallet
-          </button>
-        }
-      </div>
       <img
         src='/strikebit.png'
         alt=''
@@ -166,6 +115,16 @@ function App() {
               : <></>
         }
       </div>
+
+      <Navbar setToast={setToast} setToastMessage={setToastMessage}/>
+
+      <Snackbar
+        open={toast}
+        autoHideDuration={6000}
+        onClose={handleCloseToast}
+        message={toastMessage}
+        action={action}
+      />
     </div>
   );
 }

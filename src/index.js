@@ -12,7 +12,7 @@ if (!window.Buffer) {
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <TonConnectUIProvider manifestUrl='https://raw.githubusercontent.com/prince-1908/strikebit-mini-app-ton-meta-data/refs/heads/main/strikebit-mini-app-ton-meta-data.json?token=GHSAT0AAAAAACYX3E46HIW5RSS2IGQA5FLKZ34EVLQ'>
+    <TonConnectUIProvider manifestUrl='https://raw.githubusercontent.com/prince-1908/strikebit-mini-app-ton-meta-data/refs/heads/main/strikebit-mini-app-ton-meta-data.json'>
       <App />
     </TonConnectUIProvider>
   </React.StrictMode>
