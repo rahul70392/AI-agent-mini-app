@@ -16,6 +16,7 @@
     "axios": "^1.7.9",
     "cra-template": "1.2.0",
     "lucide-react": "^0.469.0",
+    "patch-package": "^8.0.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-scripts": "^5.0.1",
@@ -25,9 +26,10 @@
   },
   "scripts": {
     "start": "react-app-rewired start",
-    "build": "react-app-rewired build",
+    "build": "react-scripts build",
     "test": "react-app-rewired test",
-    "eject": "react-app-rewired eject"
+    "eject": "react-app-rewired eject",
+    "postinstall": "patch-package"
   },
   "eslintConfig": {
     "extends": [

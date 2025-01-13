@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-// import { TonConnectUIProvider } from '@tonconnect/ui-react';
+import { TonConnectUIProvider } from '@tonconnect/ui-react';
 import { Buffer } from 'buffer';
 if (!window.Buffer) {
   window.Buffer = Buffer;
@@ -13,9 +13,12 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     {/* <TonConnectUIProvider manifestUrl='https://raw.githubusercontent.com/prince-1908/strikebit-mini-app-ton-meta-data/refs/heads/main/strikebit-mini-app-ton-meta-data.json'> */}
+    <TonConnectUIProvider
+      manifestUrl="/meta.json"
+    >
       <App />
-    {/* </TonConnectUIProvider> */}
-  </React.StrictMode>
+    </TonConnectUIProvider>
+  </React.StrictMode >
 );
 
 // If you want to start measuring performance in your app, pass a function
