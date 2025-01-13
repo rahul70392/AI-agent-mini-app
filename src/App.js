@@ -1,12 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
+import { Navbar } from './components/Navbar';
+import Button from '@mui/material/Button';
+import Snackbar from '@mui/material/Snackbar';
+import IconButton from '@mui/material/IconButton';
+import CloseIcon from '@mui/icons-material/Close';
+
 
 function App() {
   const [userMessage, setUserMessage] = useState('');
   const [responseMessage, setResponseMessage] = useState('');
   const [userId, setUserId] = useState(null);
   const [responseLoading, setResponseLoading] = useState(false);
+  const [toast, setToast] = useState(false);
+  const [toastMessage, setToastMessage] = useState("");
 
   useEffect(() => {
     // Initialize Telegram Web App
@@ -45,6 +53,23 @@ function App() {
     }
   };
 
+  const handleCloseToast = () => {
+    setToast(false);
+  }
+
+  const action = (
+    <>
+      <IconButton
+        size="small"
+        aria-label="close"
+        color="inherit"
+        onClick={handleCloseToast}
+      >
+        <CloseIcon fontSize="small" />
+      </IconButton>
+    </>
+  );
+  
   return (
     <div
       className='container'
@@ -90,6 +115,16 @@ function App() {
               : <></>
         }
       </div>
+
+      <Navbar setToast={setToast} setToastMessage={setToastMessage}/>
+
+      <Snackbar
+        open={toast}
+        autoHideDuration={6000}
+        onClose={handleCloseToast}
+        message={toastMessage}
+        action={action}
+      />
     </div>
   );
 }

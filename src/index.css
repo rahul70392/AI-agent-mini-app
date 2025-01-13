@@ -59,8 +59,9 @@ code {
 .container {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
+  height: calc(100vh - 20px);
   padding-top: 20px;
 }
 
@@ -104,4 +105,55 @@ code {
   color: white;
   line-height: 64.87px;
   text-align: center;
+  margin: 20px 0;
+}
+
+.wallet-container{
+  bottom: 20px;
+  right: 20px;
+  color: white;
+}
+
+.wallet-button{
+  border: 0px solid transparent;
+  background-color: #1214FD;
+  color: white;
+  outline: 0px solid transparent;
+  padding: 10px;
+  border-radius: 10px;
+  width: 80%;
+}
+
+.wallet-button-contatiner{
+  padding-top: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.navbar{
+  display: flex;
+  position: absolute;
+  bottom: 20px;
+  color: white;
+  width: 354px;
+  height: 80px;
+  border-radius: 40px;
+  justify-content: space-evenly;
+  align-items: center;
+  background-color: #040306;
+}
+
+.wallet-address-container{
+  display: flex;
+  align-items: center;
+  gap: 10px
+}
+
+.copy-button{
+  border: none;
+  background-color: transparent;
+  display: flex;
+  cursor: pointer;
 }

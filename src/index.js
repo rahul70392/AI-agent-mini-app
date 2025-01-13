@@ -3,11 +3,18 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { TonConnectUIProvider } from '@tonconnect/ui-react';
+import { Buffer } from 'buffer';
+if (!window.Buffer) {
+  window.Buffer = Buffer;
+}
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <TonConnectUIProvider manifestUrl='https://raw.githubusercontent.com/prince-1908/strikebit-mini-app-ton-meta-data/refs/heads/main/strikebit-mini-app-ton-meta-data.json'>
+      <App />
+    </TonConnectUIProvider>
   </React.StrictMode>
 );
 
