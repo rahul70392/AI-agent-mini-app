@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
-import { Navbar } from './components/Navbar';
-import Button from '@mui/material/Button';
+import {Navbar} from "./components/Navbar"
 import Snackbar from '@mui/material/Snackbar';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
@@ -107,7 +106,7 @@ function App() {
       >
         {
           responseLoading ?
-            <div className='response-loader-container'>Loading <div class="loader"></div></div>
+            <div className='response-loader-container'>Loading <div className="loader"></div></div>
             : responseMessage ?
               <>
                 Response: {responseMessage}
