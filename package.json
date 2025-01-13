@@ -10,6 +10,7 @@
     "@mui/styled-engine-sc": "^6.3.1",
     "@testing-library/react": "^13.4.0",
     "@ton/core": "^0.59.1",
+    "@tonconnect/protocol": "^2.2.6",
     "@tonconnect/sdk": "^3.0.5",
     "@tonconnect/ui-react": "^2.0.9",
     "axios": "^1.7.9",
@@ -24,9 +25,9 @@
   },
   "scripts": {
     "start": "react-app-rewired start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "build": "react-app-rewired build",
+    "test": "react-app-rewired test",
+    "eject": "react-app-rewired eject"
   },
   "eslintConfig": {
     "extends": [
@@ -47,6 +48,7 @@
     ]
   },
   "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "buffer": "^6.0.3",
     "react-app-rewired": "^2.2.1"
   }
